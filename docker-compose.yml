@@ -1,0 +1,8 @@
+# version: '3'  version of docker
+version: '3'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 192.1.0.0:8080
+    ports:
+      - 8080:8080
