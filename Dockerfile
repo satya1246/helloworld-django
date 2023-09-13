@@ -11,6 +11,6 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 ADD . /app
-EXPOSE 8000
+EXPOSE 8080
 CMD ["python" 'manage.py runserver']
 
