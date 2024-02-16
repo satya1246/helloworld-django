@@ -5,7 +5,7 @@
 trigger:
 - main
 pool:
-  name: azure-agent
+  name: devops-agent
 resources:
 - repo: self
 
