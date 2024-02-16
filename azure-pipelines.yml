@@ -18,7 +18,7 @@ variables:
 
   # Agent VM image name
 pool:
-name: azure-agent
+  name: azure-agent
 
 stages:
 - stage: Build
