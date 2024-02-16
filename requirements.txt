@@ -1,2 +1,2 @@
-djang0==4.1.4
-gunicorn==19.0.4
+django==4.1.4
+gunicorn==19.0.0
