@@ -1,23 +1,32 @@
 # Docker
-# Build a Docker image
+# Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
 - main
-pool:
-  name: azure-agent
+
 resources:
 - repo: self
 
 variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '9b3eb820-5a02-4cd1-94a1-017750f92e8a'
+  imageRepository: 'djangohelloworld'
+  containerRegistry: 'demo1246.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+pool:
+name: azure-agent
 
 stages:
 - stage: Build
   displayName: Build and push stage
-  jobs:  
+  jobs:
   - job: Build
-    displayName: Build job
+    displayName: Build
+   
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -25,6 +34,6 @@ stages:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(demo1246)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
